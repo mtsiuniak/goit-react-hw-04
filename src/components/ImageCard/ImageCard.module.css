@@ -1,0 +1,9 @@
+
+.image {
+    min-width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+.imageDiv {
+    height: 100%;
+}
