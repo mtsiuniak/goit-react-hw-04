@@ -31,7 +31,6 @@ export default function ImageModal({
   return (
     <div>
       <Modal
-        className={css.container}
         isOpen={imgModal}
         onRequestClose={onModalClose}
         style={customStyles}
