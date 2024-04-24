@@ -3,7 +3,6 @@ import toast from 'react-hot-toast';
 import css from './SearchBar.module.css';
 import { FaSearch } from "react-icons/fa";
 
-
 export default function SearchBar({onSearch}) {
     const[text, setText] = useState('');
     const handleChange = event => {

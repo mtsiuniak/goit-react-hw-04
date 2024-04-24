@@ -1,0 +1,17 @@
+.img {
+    width: 400px;
+    height: 500px;
+    object-fit: cover;
+}
+
+.list {
+    display: flex;
+    gap: 40px;
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.item {
+    display: flex;
+}

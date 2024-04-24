@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Modal from 'react-modal';
 import { fetchImages } from "../../image-api"
 import ImageGallery from "../ImageGallery/ImageGallery";
 import SearchBar from "../SearchBar/SearchBar";
@@ -7,6 +6,7 @@ import LoadMoreButton from "../LoadMoreButton/LoadMoreButton";
 import { Toaster } from 'react-hot-toast';
 import Loader from "../Loader/Loader";
 import Error from "../ErrorMessage/ErrorMessage";
+import ImageModal from "../ImageModal/ImageModal"
 
 export default function App() {
   const [images, setImages] = useState([]);
@@ -15,6 +15,19 @@ export default function App() {
 
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("")
+
+  const [modal, setModal] = useState(false);
+  const [imgUrl, setImgsUrl] = useState([]);
+
+
+  const openModal = (url) => {
+    setImgsUrl(url);
+    toggle();
+  };
+
+  const toggle = () => {
+    setModal(!modal);
+  };
   
   const handleSearch = (newQuery) => {
      setQuery(newQuery);
@@ -50,10 +63,18 @@ export default function App() {
   return <>
     <SearchBar onSearch={handleSearch} />
     {error && <Error/>}
-    {images.length > 0 && <ImageGallery items={images} />}
+    {images.length > 0 && <ImageGallery onImgClick={openModal} items={images} />}
     {isLoading && <Loader/>}
     {images.length > 0 && !isLoading && <LoadMoreButton onClick={handleLoadMore} />}
     <Toaster />
+     {modal && (
+        <ImageModal
+          image={imgUrl}
+          imgModal={modal}
+          item={images}
+          onModalClose={toggle}
+        />
+      )}
   </>
 }
 
